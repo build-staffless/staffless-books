@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staffless Practice Books – Dr. Jodi Dinnerman</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: #fff;
+            color: #333;
+            line-height: 1.7;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== STAFFLESS BRAND COLORS ===== */
+        /* Primary pink/magenta: #d63384 / #c0185e  */
+        /* Dark text: #1a1a1a                        */
+        /* Light bg: #fdf5f8                         */
+        /* Accent yellow: #f5c842                    */
+
+        /* ===== HERO BANNER ===== */
+        .hero {
+            background: #fff;
+            border-bottom: 4px solid #d63384;
+            padding: 70px 24px 60px;
+            text-align: center;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.85em;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #d63384;
+            margin-bottom: 14px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2em, 5vw, 3.4em);
+            font-weight: 700;
+            color: #1a1a1a;
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: #d63384;
+        }
+
+        .hero-sub {
+            font-size: 1.1em;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== SECTION LABEL ===== */
+        .section-label {
+            text-align: center;
+            padding: 60px 24px 10px;
+        }
+
+        .section-label .eyebrow {
+            font-size: 0.8em;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #d63384;
+            margin-bottom: 10px;
+        }
+
+        .section-label h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6em, 3.5vw, 2.4em);
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+
+        .section-label .underline-bar {
+            width: 60px;
+            height: 4px;
+            background: #d63384;
+            margin: 16px auto 0;
+            border-radius: 2px;
+        }
+
+        /* ===== BOOKS GRID ===== */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            padding: 50px 24px 70px;
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+
+        /* ===== BOOK CARD ===== */
+        .book-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: #fff;
+            border-radius: 14px;
+            padding: 30px 24px 28px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .book-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 36px rgba(214, 51, 132, 0.18);
+        }
+
+        .book-cover-wrap {
+            width: 100%;
+            max-width: 200px;
+            margin-bottom: 22px;
+            filter: drop-shadow(0 8px 18px rgba(0,0,0,0.18));
+            transition: filter 0.3s ease;
+        }
+
+        .book-card:hover .book-cover-wrap {
+            filter: drop-shadow(0 14px 28px rgba(214, 51, 132, 0.28));
+        }
+
+        .book-cover-wrap img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        .book-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15em;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .book-desc {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.65;
+            margin-bottom: 22px;
+            flex-grow: 1;
+        }
+
+        /* ===== ORDER BUTTON ===== */
+        .btn-order {
+            display: inline-block;
+            background: #d63384;
+            color: #fff;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.95em;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 13px 32px;
+            border-radius: 50px;
+            border: 2px solid #d63384;
+            cursor: pointer;
+            transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
+            width: 100%;
+        }
+
+        .btn-order:hover {
+            background: #fff;
+            color: #d63384;
+            transform: scale(1.03);
+        }
+
+        /* ===== DIVIDER ===== */
+        .divider {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #d63384, #f5c842);
+            margin: 0 auto 50px;
+            border-radius: 2px;
+        }
+
+        /* ===== LEAD MAGNET SECTION ===== */
+        .lead-magnet {
+            background: #fdf5f8;
+            padding: 70px 24px;
+        }
+
+        .lead-magnet-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .lm-content .eyebrow {
+            font-size: 0.8em;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #d63384;
+            margin-bottom: 12px;
+        }
+
+        .lm-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6em, 3vw, 2.2em);
+            color: #1a1a1a;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 18px;
+        }
+
+        .lm-content h2 em {
+            color: #d63384;
+            font-style: italic;
+        }
+
+        .lm-content p {
+            font-size: 1em;
+            color: #555;
+            margin-bottom: 14px;
+            line-height: 1.7;
+        }
+
+        .lm-benefits {
+            list-style: none;
+            margin: 20px 0 28px;
+        }
+
+        .lm-benefits li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.95em;
+            color: #444;
+            margin-bottom: 10px;
+        }
+
+        .lm-benefits li::before {
+            content: "✓";
+            color: #d63384;
+            font-weight: 900;
+            font-size: 1.1em;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* ===== FORM PLACEHOLDER ===== */
+        .form-box {
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            min-height: 685px;
+            box-shadow: 0 4px 20px rgba(214, 51, 132, 0.12);
+        }
+
+        .form-box iframe {
+            display: block;
+            width: 100%;
+            height: 685px;
+            border: none;
+            border-radius: 14px;
+        }
+
+        .form-box-icon {
+            font-size: 2.8em;
+            margin-bottom: 16px;
+        }
+
+        .form-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4em;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .form-box p {
+            font-size: 0.9em;
+            color: #999;
+            margin-bottom: 8px;
+        }
+
+        .form-box .placeholder-note {
+            margin-top: 18px;
+            font-size: 0.78em;
+            color: #ccc;
+            font-style: italic;
+            border-top: 1px dashed #eee;
+            padding-top: 14px;
+            width: 100%;
+        }
+
+        /* ===== FOOTER STRIP ===== */
+        .footer-strip {
+            background: #1a1a1a;
+            color: #aaa;
+            text-align: center;
+            padding: 28px 24px;
+            font-size: 0.85em;
+        }
+
+        .footer-strip a {
+            color: #d63384;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .lead-magnet-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .books-grid {
+                grid-template-columns: 1fr;
+                max-width: 380px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HERO ===== -->
+    <header class="hero">
+        <div class="hero-eyebrow">Dr. Jodi Dinnerman</div>
+        <h1>Staffless Practice <em>Books</em></h1>
+        <p class="hero-sub">Practical guides to help wellness practitioners serve more, earn more, and work less — all in joy.</p>
+    </header>
+
+    <!-- ===== BOOKS SECTION ===== -->
+    <div class="section-label">
+        <p class="eyebrow">Available on Amazon</p>
+        <h2>The Complete Collection</h2>
+        <div class="underline-bar"></div>
+    </div>
+
+    <div class="books-grid">
+
+        <!-- Book 1: Staffless -->
+        <div class="book-card">
+            <div class="book-cover-wrap">
+                <img src="mockup_staffless.png" alt="Staffless by Dr. Jodi Dinnerman – 3D Book Mockup">
+            </div>
+            <h3 class="book-title">Staffless</h3>
+            <p class="book-desc">Automate and organize your front desk systems for more efficient client communications. Discover how to stop working too hard and let smart systems do the heavy lifting for your practice.</p>
+            <a href="#" class="btn-order">Order Here</a>
+        </div>
+
+        <!-- Book 2: The Joy-Filled Practice Plan -->
+        <div class="book-card">
+            <div class="book-cover-wrap">
+                <img src="mockup_joyfilled_plan.png" alt="The Joy-Filled Practice Plan by Dr. Jodi Dinnerman – 3D Book Mockup">
+            </div>
+            <h3 class="book-title">The Joy-Filled Practice Plan</h3>
+            <p class="book-desc">A collection of tried-and-true practice habits and community celebrations used for over two decades to grow, nourish, and support a thriving wellness practice — every checklist, strategy, and plan included.</p>
+            <a href="#" class="btn-order">Order Here</a>
+        </div>
+
+        <!-- Book 3: The Joy-Filled Practice Playbook -->
+        <div class="book-card">
+            <div class="book-cover-wrap">
+                <img src="mockup_playbook.png" alt="The Joy-Filled Practice Playbook by Dr. Jodi Dinnerman – 3D Book Mockup">
+            </div>
+            <h3 class="book-title">The Joy-Filled Practice Playbook</h3>
+            <p class="book-desc">Organization, action planning, and masterful execution in one guide. Includes a 12-month undated planner and skill-building exercises to create the practice of your dreams.</p>
+            <a href="#" class="btn-order">Order Here</a>
+        </div>
+
+        <!-- Book 4: The Curious Practitioner -->
+        <div class="book-card">
+            <div class="book-cover-wrap">
+                <img src="mockup_curious.png" alt="The Curious Practitioner by Dr. Jodi Dinnerman – 3D Book Mockup">
+            </div>
+            <h3 class="book-title">The Curious Practitioner</h3>
+            <p class="book-desc">900+ questions to explore while creating and growing a wellness practice. A self-guided bank of questions to course-correct, dive deep, and realize success — relevant to all wellness practice types.</p>
+            <a href="#" class="btn-order">Order Here</a>
+        </div>
+
+    </div>
+
+    <!-- ===== LEAD MAGNET ===== -->
+    <section class="lead-magnet">
+        <div class="lead-magnet-inner">
+
+            <div class="lm-content">
+                <p class="eyebrow">Free Download</p>
+                <h2>Get the First Chapter of <em>Staffless</em> — Free</h2>
+                <p>Start your journey to a staffless practice right now. Enter your details to receive the first chapter of Dr. Jodi's bestselling book <strong>Staffless</strong> delivered straight to your inbox.</p>
+                <p>Discover how to:</p>
+                <ul class="lm-benefits">
+                    <li>Automate your front desk systems immediately</li>
+                    <li>Stop doing work that can be delegated or automated</li>
+                    <li>Streamline all client communications</li>
+                    <li>Step into the new era of practice with confidence</li>
+                    <li>Create more time for what you love most</li>
+                </ul>
+                <p><strong>No fluff. Just real, actionable practice solutions.</strong></p>
+            </div>
+
+            <div class="form-box">
+                <iframe
+                    src="https://app.stafflesspractice.com/widget/form/WvjKQT9WL10HVwCriXt3"
+                    style="width:100%;height:685px;border:none;border-radius:14px"
+                    id="inline-WvjKQT9WL10HVwCriXt3"
+                    data-layout="{'id':'INLINE'}"
+                    data-trigger-type="alwaysShow"
+                    data-trigger-value=""
+                    data-activation-type="alwaysActivated"
+                    data-activation-value=""
+                    data-deactivation-type="neverDeactivate"
+                    data-deactivation-value=""
+                    data-form-name="E Book Form"
+                    data-height="685"
+                    data-layout-iframe-id="inline-WvjKQT9WL10HVwCriXt3"
+                    data-form-id="WvjKQT9WL10HVwCriXt3"
+                    title="E Book Form">
+                </iframe>
+            </div>
+            <script src="https://app.stafflesspractice.com/js/form_embed.js"></script>
+
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer-strip">
+        <p>&copy; 2024 Staffless Practice &nbsp;|&nbsp; All Rights Reserved &nbsp;|&nbsp; <a href="https://www.gostaffless.com" target="_blank">gostaffless.com</a></p>
+    </footer>
+
+</body>
+</html>
